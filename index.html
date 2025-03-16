@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Koray USTUNDAG">
+    <title>Maze Generator</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0 1em 1em;
+        }
+
+        .center {
+            align-items: center;
+            text-align: center;
+        }
+
+        .hide {
+            display: none;
+        }
+
+        canvas {
+        margin-right: 1em;
+        }
+
+        .top-margin {
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1 class="center">Maze Generator</h1>
+    <fieldset>
+        <legend>Settings</legend>
+        <label for="wall-size">Wall thickness:</label>
+        <input id="wall-size" type="number" value="10" min="1">
+
+        <br>
+
+        <label for="width">Columns:</label>
+        <input id="width" type="number" name="width" class="top-margin" value="20" min="3" max="200">
+
+        <label for="height">Rows:</label>
+        <input id="height" type="number" name="height" class="top-margin" value="20" min="3" max="200">
+
+        <br>
+
+        <label for="entry">Maze entries:</label>
+        <select id="entry" name="entry" class="top-margin">
+            <option value="">none</option>
+            <option value="diagonal" selected="selected">diagonal</option>
+            <option value="horizontal">left and right</option>
+            <option value="vertical">top and bottom</option>
+        </select>
+
+        <br>
+
+        <label for="bias">Bias:</label>
+        <select id="bias" name="bias" class="top-margin">
+            <option value="">none</option>
+            <option value="horizontal">horizontal</option>
+            <option value="vertical">vertical</option>
+        </select>
+
+        <br>
+
+        <label for="remove_walls">Remove maze walls:</label>
+        <input id="remove_walls" type="number" name="remove_walls" class="top-margin" value="0" min="0" max="200">
+
+        <br>
+
+        <label for="backgroundColor">Background Color:</label>
+        <input id="backgroundColor" type="color" name="backgroundColor" class="top-margin" value="#ffffff">
+
+        <br>
+
+        <label for="color">Wall Color:</label>
+        <input id="color" type="color" name="color" value="#000000" class="top-margin">
+
+        <br>
+
+        <label for="solveColor">Slove Color:</label>
+        <input id="solveColor" type="color" name="solveColor" class="top-margin" value="#cc3737">
+
+        <br>
+        <div class="top-margin">
+            <button id="create-maze" onclick="initMaze();ShowGenerateImage();" class='hide'>Generate Maze</button>
+        </div>
+    </fieldset>
+    <fieldset id="GenIMG" class="hide">
+        <legend>Image</legend>
+        <button id="solve" onclick="initSolve();" class='hide'>Solve Maze</button>
+        <a href="" class="hide" id="download">Save Maze</a>
+        <br>
+        <canvas id="maze" class="top-margin"></canvas>
+    </fieldset>
+    <script type="text/javascript">
+        const createMazeButton = document.getElementById('create-maze');
+        const genimg = document.getElementById('GenIMG');
+        createMazeButton.classList.toggle("hide");
+        function ShowGenerateImage() {
+            if (genimg.classList.contains("hide")) {
+                genimg.classList.toggle("hide");
+                genimg.classList.remove("hide");
+            }
+        }
+    </script>
+    <script type="text/javascript" src="src/globals.js"></script>
+    <script type="text/javascript" src="src/utils.js"></script>
+    <script type="text/javascript" src="src/entries.js"></script>
+    <script type="text/javascript" src="src/maze.js"></script>
+    <script type="text/javascript" src="src/solver.js"></script>
+    <script type="text/javascript" src="src/app.js"></script>
+    <script type="text/javascript" src="src/human-colours-en-gb.js"></script>
+</body>
+</html>
